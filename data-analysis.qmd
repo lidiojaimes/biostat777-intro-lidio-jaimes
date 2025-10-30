@@ -8,6 +8,8 @@ The data comes from [The Deportation Data Project](https://deportationdata.org/d
 
 ```{r}
 library(tidyverse)
+library(countrycode)
+
 arrests_raw <- readxl::read_xlsx("./files-docs/arrests-latest.xlsx")
 ```
 
@@ -24,8 +26,36 @@ arrests <-
         administration = 
             if_else(apprehension_date >= as.Date("2025-01-20"), "Trump", "Biden"),
         departure_country_match = 
-            if_else(departure_country == citizenship_country, 1, 0)
-        ) |> 
+            if_else(departure_country == citizenship_country, "Yes", "No"),
+        departure_country_match = 
+            factor(departure_country_match),
+        citizenship_country = str_to_title(citizenship_country),
+        departure_country = str_to_title(departure_country),
+
+        citizenship_continent = 
+            countrycode(sourcevar = citizenship_country, 
+                        origin = "country.name.en", 
+                        destination = "continent",
+                        nomatch = NULL),
+        departure_continent = 
+            countrycode(sourcevar = departure_country, 
+                        origin = "country.name.en", 
+                        destination = "continent",
+                        nomatch = NULL),
+        departure_continent = 
+            case_when(
+                departure_continent == "Kosovo" ~ "Europe",
+                departure_continent == "Saba" ~ "Americas",
+                departure_continent == "Cocos Islands" ~ "Oceania",
+                departure_continent == "European Union" ~ "Europe",
+                TRUE ~ departure_continent),
+        citizenship_continent = 
+            case_when(
+                citizenship_continent == "Kosovo" ~ "Europe",
+                citizenship_continent == "Czechoslovakia" ~ "Europe",
+                citizenship_continent == "Yugoslavia" ~ "Europe",
+                citizenship_continent == "Serbia And Montenegro" ~ "Europe",
+                TRUE ~ citizenship_continent)) |> 
     filter(duplicate_likely == FALSE)
 ```
 
@@ -55,22 +85,31 @@ arrests |>
     geom_vline(xintercept = "Jan 2025")
 ```
 
-2. Circular barchart, each group is continent citizen origin, the bars
-    mosiaic bar plot, each line is citizen continent of origin, filled by departure country (1- country origin, 2-6 are continents)
+Circular barchart, each group is continent citizen origin, the bars 
+
+
+Mosiaic bar plot, each line is citizen continent of origin, filled by departure country (1- country origin, 2-6 are continents)
 ```{r}
-library(countrycode)
-
 arrests |> 
-    select(citizenship_country, departure_country) |> 
+    filter(!is.na(departure_continent)) |> 
+    select(citizenship_country, citizenship_continent, departure_country, departure_continent, departure_country_match, administration) |> 
     mutate(
-        citizenship_continent = 
-            countrycode(sourcevar = citizenship_country, 
-                        origin = "country.name.en", 
-                        destination = "continent",
-                        nomatch = )
-    )
+        departure_destination = 
+            case_when(
+                departure_country_match == "Yes" ~ "Country of Origin",
+                TRUE ~ departure_continent)
+    ) |> 
+    ggplot(aes(x = citizenship_continent, fill = departure_destination)) +
+    geom_bar(position = "fill") +
+    facet_wrap(~ administration, ncol = 2) +
+    theme_minimal() +
+    labs(title = "Proportion of ICE arrestees by citizenship continent and departure continent", 
+         x = "Citizenship Continent", 
+         y = "Proportion",
+         fill = "Departure Destination") +
+    theme(legend.position = "bottom")
 
-
+# 4 people from Yugoslavia were deported to other countries in Europe since the country no longer exists. Countries were Serbia, North Macedonia, and Montenegro(2), which are all modern day Yugoslavia
 ```
 
 3. filter to cali, chicago, 
