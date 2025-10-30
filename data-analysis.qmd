@@ -1,0 +1,93 @@
+---
+title: "Example Analysis"
+format: html
+---
+In this analysis, we will use data pertaining to ICE Arrests from Sep. 2023 to Jul. 2025. The question I aim to answer is if recent arrests (January 2025 – present)target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one. 
+
+The data comes from [The Deportation Data Project](https://deportationdata.org/data/ice.html) and its data dictionary can be found [here](https://deportationdata.org/docs/ice/codebook.html).
+
+```{r}
+library(tidyverse)
+arrests_raw <- readxl::read_xlsx("./files-docs/arrests-latest.xlsx")
+```
+
+
+```{r Data wrangling}
+arrests <- 
+    arrests_raw |> 
+    mutate(
+        apprehension_date = 
+            as.Date(apprehension_date),
+        apprehension_date_my = 
+            factor(x = format(apprehension_date, "%b %Y"), 
+                   levels = unique(format(apprehension_date, "%b %Y"))),
+        administration = 
+            if_else(apprehension_date >= as.Date("2025-01-20"), "Trump", "Biden"),
+        departure_country_match = 
+            if_else(departure_country == citizenship_country, 1, 0)
+        ) |> 
+    filter(duplicate_likely == FALSE)
+```
+
+Your analysis must include some minimal form of data wrangling with you using at least five different functions from dplyr or tidyr. Have used: `mutate`, `filter`, `if_else`
+
+Your analysis should include at least three plots with you using at least three different geom_*() functions from ggplot2 (or another package with geom_*() functions).
+Plots should have titles, subtitles, captions, and human-understandable axis labels.
+At least one plot should using a type of faceting (facet_grid() or facet_wrap()).
+
+1. Line plot with number of arrests every month across time, stratified by criminality
+
+```{r}
+arrests |> 
+    group_by(apprehension_date_my, apprehension_criminality) |> 
+    summarise(count = n()) |> 
+    ggplot(aes(x = apprehension_date_my, y = count, 
+               color = apprehension_criminality, group = apprehension_criminality)) +
+    geom_point() + 
+    geom_line() + 
+    theme_bw() + 
+    labs(title = "ICE arrests over time and the criminality of the arrestees", 
+         x = "Date of arrests", 
+         y = "Number of arrests",
+         color = "Criminality") + 
+    theme(axis.text.x = element_text(angle = 50, hjust=1),
+          legend.position = "bottom") +
+    geom_vline(xintercept = "Jan 2025")
+```
+
+2. Circular barchart, each group is continent citizen origin, the bars
+    mosiaic bar plot, each line is citizen continent of origin, filled by departure country (1- country origin, 2-6 are continents)
+```{r}
+library(countrycode)
+
+arrests |> 
+    select(citizenship_country, departure_country) |> 
+    mutate(
+        citizenship_continent = 
+            countrycode(sourcevar = citizenship_country, 
+                        origin = "country.name.en", 
+                        destination = "continent",
+                        nomatch = )
+    )
+
+
+```
+
+3. filter to cali, chicago, 
+
+```{r}
+
+```
+
+Your analysis must include one image or table (not one you created yourself, but one you have saved locally or one from the web).
+
+Your analysis must include at least two different callout blocks.
+    - one could be about the date july not full so excluded
+
+Your analysis must include a .bib file, which you use to reference at least three unique citations. For example, it could be to a website or paper from where the original data came from or it could be to a paper describing a method you are using to analyze the data.
+
+Your analysis must include the use of at least 1 margin content.
+
+You must summarize your analysis and/or results with a paragraph (4-6 sentences).
+
+At the end of the data analysis, list out each of the functions you used from each of the packages (dplyr, tidyr, and ggplot2) to help the TA with respect to making sure you met all the requirements described above.
