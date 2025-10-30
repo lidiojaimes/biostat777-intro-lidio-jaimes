@@ -2,4 +2,8 @@
 title: "About"
 ---
 
-About this site
+## Educational background
+I graduated from the University of Georgia in May 2025 with my B.S. in Statistics and started my program here in August 2025. 
+
+## Research interests
+I am interested in survival analysis and longitudinal data analysis, with applications in aging research and clinical trials. I look forward to deepening my expertise in biostatistics and building a meaningful career in the field.
