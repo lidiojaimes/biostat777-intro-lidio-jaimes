@@ -55,20 +55,26 @@ arrests <-
                 citizenship_continent == "Czechoslovakia" ~ "Europe",
                 citizenship_continent == "Yugoslavia" ~ "Europe",
                 citizenship_continent == "Serbia And Montenegro" ~ "Europe",
-                TRUE ~ citizenship_continent)) |> 
+                TRUE ~ citizenship_continent),
+        departure_destination = 
+            case_when(
+                departure_country_match == "Yes" ~ "Country of Origin",
+                TRUE ~ departure_continent)) |> 
     filter(duplicate_likely == FALSE)
 ```
 
-Your analysis must include some minimal form of data wrangling with you using at least five different functions from dplyr or tidyr. Have used: `mutate`, `filter`, `if_else`
+Your analysis must include some minimal form of data wrangling with you using at least five different functions from dplyr or tidyr. Have used: `mutate`, `filter`, `if_else`, `case_when`,
+
+# Data Visualization
 
 Your analysis should include at least three plots with you using at least three different geom_*() functions from ggplot2 (or another package with geom_*() functions).
 Plots should have titles, subtitles, captions, and human-understandable axis labels.
 At least one plot should using a type of faceting (facet_grid() or facet_wrap()).
 
-1. Line plot with number of arrests every month across time, stratified by criminality
-
+## Criminality of Arestees
 ```{r}
 arrests |> 
+    filter(apprehension_date_my != "Jul 2025") |>
     group_by(apprehension_date_my, apprehension_criminality) |> 
     summarise(count = n()) |> 
     ggplot(aes(x = apprehension_date_my, y = count, 
@@ -76,19 +82,46 @@ arrests |>
     geom_point() + 
     geom_line() + 
     theme_bw() + 
-    labs(title = "ICE arrests over time and the criminality of the arrestees", 
+    theme(plot.caption = element_text(hjust = 0),
+          axis.text.x = element_text(angle = 50, hjust=1),
+          legend.position = "bottom") +
+    labs(title = "ICE arrests over time and the criminality of the arrestees",
+         subtitle = "Data from Sep. 2023 to Jun. 2025",
+         caption = "Convicted criminal is defined as someone with at least one criminal conviction. \nPending criminal charges is defined as someone with no criminal convictions but at least one criminal charge. \nOther Immigration Violation is defined as someone with no charges or convictions.",
          x = "Date of arrests", 
          y = "Number of arrests",
          color = "Criminality") + 
-    theme(axis.text.x = element_text(angle = 50, hjust=1),
-          legend.position = "bottom") +
     geom_vline(xintercept = "Jan 2025")
 ```
 
-Circular barchart, each group is continent citizen origin, the bars 
 
+## Departure destination of arrestees
 
-Mosiaic bar plot, each line is citizen continent of origin, filled by departure country (1- country origin, 2-6 are continents)
+I am interested in seeing where ICE arrestees are being deported under the two different administrations, particularly whether individuals deported to countries other than their country of origin are being sent to destinations within the same continent or not.
+
+::: {.callout-note}
+Four individuals with citizenship from Yugoslavia were deported to other European countries since the nation no longer exists. The destinations were Serbia, North Macedonia, and Montenegro (two cases), all of which are part of what was once Yugoslavia. These cases were categorized under the "Europe" continent for this analysis and not under "Country of Origin".
+:::
+
+```{r}
+arrests |> 
+    filter(!is.na(departure_continent)) |> 
+    select(citizenship_country, citizenship_continent, departure_country, departure_continent, departure_country_match, administration) |> 
+    ggplot(aes(x = citizenship_continent, fill = departure_destination)) +
+    geom_bar(position = "fill") +
+    facet_wrap(~ administration, ncol = 2) +
+    theme_minimal() +
+    theme(plot.caption = element_text(hjust = 0),
+          legend.position = "bottom") +
+    labs(title = "Departure destinations of ICE arrestees by citizenship continent",
+         subtitle = "Where people are being deported to and how it differs by administration",
+         caption = "Country of Origin indicates that the arrestee is being deported to where they have citizenship.",
+         x = "Citizenship Continent", 
+         y = "Proportion",
+         fill = "Departure Destination") +
+    scale_fill_brewer(palette = "Set1")
+```
+
 ```{r}
 arrests |> 
     filter(!is.na(departure_continent)) |> 
@@ -99,6 +132,7 @@ arrests |>
                 departure_country_match == "Yes" ~ "Country of Origin",
                 TRUE ~ departure_continent)
     ) |> 
+    filter(departure_destination != "Country of Origin") |>
     ggplot(aes(x = citizenship_continent, fill = departure_destination)) +
     geom_bar(position = "fill") +
     facet_wrap(~ administration, ncol = 2) +
@@ -107,15 +141,28 @@ arrests |>
          x = "Citizenship Continent", 
          y = "Proportion",
          fill = "Departure Destination") +
-    theme(legend.position = "bottom")
-
-# 4 people from Yugoslavia were deported to other countries in Europe since the country no longer exists. Countries were Serbia, North Macedonia, and Montenegro(2), which are all modern day Yugoslavia
+    theme(legend.position = "bottom") +
+    scale_fill_brewer(palette = "Set1")
 ```
 
-3. filter to cali, chicago, 
+## 3. filter to cali, chicago, 
 
 ```{r}
-
+arrests |> 
+    group_by(apprehension_date_my, apprehension_method) |> 
+    summarise(count = n()) |> 
+    ggplot(aes(x = apprehension_date_my, y = count, 
+               color = apprehension_method, group = apprehension_method)) +
+    geom_point() + 
+    geom_line() + 
+    theme_bw() + 
+    labs(title = "ICE arrests over time and the arrest method", 
+         x = "Date of arrests", 
+         y = "Number of arrests",
+         color = "Arrest method") + 
+    theme(axis.text.x = element_text(angle = 50, hjust=1),
+          legend.position = "bottom") +
+    geom_vline(xintercept = "Jan 2025")
 ```
 
 Your analysis must include one image or table (not one you created yourself, but one you have saved locally or one from the web).
@@ -130,3 +177,38 @@ Your analysis must include the use of at least 1 margin content.
 You must summarize your analysis and/or results with a paragraph (4-6 sentences).
 
 At the end of the data analysis, list out each of the functions you used from each of the packages (dplyr, tidyr, and ggplot2) to help the TA with respect to making sure you met all the requirements described above.
+
+
+```{r}
+arrests |> 
+    mutate(apprehension_method = case_when(
+        str_detect(apprehension_method, "CAP") ~ "CAP Incarceration",
+        str_detect(apprehension_method, "Non-Custodial Arrest") ~ "Non-Custodial Arrest",
+        apprehension_method == "Located" ~ "Located",
+        TRUE ~ "Other efforts")) |> 
+    filter(apprehension_state %in% c("GEORGIA"),
+    apprehension_criminality == "3 Other Immigration Violator") |>
+    group_by(apprehension_date_my, apprehension_method) |> 
+    summarise(count = n()) |> 
+    ggplot(aes(x = apprehension_date_my, y = count, 
+               color = apprehension_method, group = apprehension_method)) +
+    geom_point() + 
+    geom_line() + 
+    theme_bw() + 
+    labs(title = "ICE arrests over time and the methods used in ", 
+         x = "Date of arrests", 
+         y = "Number of arrests",
+         color = "Apprehension Method") + 
+    theme(axis.text.x = element_text(angle = 50, hjust=1),
+          legend.position = "bottom") +
+    geom_vline(xintercept = "Jan 2025")
+
+arrests |>
+    count(apprehension_method, sort = TRUE) |> print(n = Inf)
+
+arrests |> 
+    filter(
+        citizenship_country == "Mexico",
+        departure_continent != "Americas") |> 
+    select(citizenship_country, departure_country, administration, apprehension_date, apprehension_criminality) |> print(n = Inf)
+```
