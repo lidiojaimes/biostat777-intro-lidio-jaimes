@@ -197,18 +197,23 @@ arrests |>
 
 ## Methods of Apprehension in California for Non-Criminal Undocumented Individuals
 
+California has recently seen a surge in ICE arrests since January 2025. I am interested in seeing the different methods of apprehension used for undocumented individuals with no criminal history in California, and how these methods have changed over time.
+
+In California, the three most common methods of apprehension for non-criminal individuals are non-custodial arrests, efforts to locate individuals, and unspecified “other efforts.” The less common methods of apprehension were grouped together under “other efforts” for the purpose of visualization.
+
 ```{r}
-#MAKE AS MARGIN TABLE
+#| column: margin
 arrests |> 
     filter(apprehension_state == "CALIFORNIA",
            apprehension_criminality == "3 Other Immigration Violator") |> 
-    count(apprehension_method, sort = TRUE) |> print(n = Inf)
+    count(apprehension_method, sort = TRUE) |> 
+    print(n = Inf) |> 
+    knitr::kable()
 ```
 
 ```{r}
 arrests |> 
     mutate(apprehension_method = case_when(
-        str_detect(apprehension_method, "CAP") ~ "CAP Incarceration",
         str_detect(apprehension_method, "Non-Custodial Arrest") ~ "Non-Custodial Arrest",
         apprehension_method == "Located" ~ "Located",
         TRUE ~ "Other efforts")) |> 
@@ -222,12 +227,16 @@ arrests |>
     geom_point() + 
     geom_line() + 
     theme_bw() + 
-    labs(title = "Methods of Apprehension in California for Non-Criminal Undocumented Individuals", 
+    theme(
+        axis.text.x = element_text(angle = 50, hjust=1),
+        plot.caption = element_text(hjust = 0),
+        legend.position = "bottom") +
+    labs(title = "Methods of Apprehension in California for Non-Criminal Undocumented Individuals",
+         subtitle = "How ICE is apprehending undocumented individuals with no criminal history in California over time",
+         caption = "1. CAP Incarceration indicates that the individual was apprehended while incarcerated in a local, state, or \n    federal jail or prison under the Criminal Alien Program (CAP).\n2. Located indicates that the individual was located through other means, such as tips or referrals.\n3. Non-Custodial Arrest indicates that the individual was apprehended in the community rather than in a detention facility.\n4. Other efforts include less common methods and are all shown in margin table.",
          x = "Date of arrests", 
          y = "Number of arrests",
          color = "Apprehension Method") + 
-    theme(axis.text.x = element_text(angle = 50, hjust=1),
-          legend.position = "bottom") +
     geom_vline(xintercept = "Jan 2025")
 ```
 
