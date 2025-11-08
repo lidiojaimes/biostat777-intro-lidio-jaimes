@@ -1,6 +1,7 @@
 ---
 title: "Example Analysis"
 format: html
+bibliography: references.bib
 ---
 # Introduction
 In this analysis, we will use data pertaining to ICE Arrests from Sep. 2023 to Jul. 2025. The question I aim to answer is if recent arrests (January 2025 – present)target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one. 
@@ -115,7 +116,7 @@ Four individuals with citizenship from Yugoslavia were deported to other Europea
 The data dictinionary does not specify whether missing values in `departure_country` indicate that the arrestee was not deported or if the data was simply not recorded. Therefore, analyses involving departure destinations only include cases with non-missing `departure_country` values.
 :::
 
-```{r, message=FALSE}
+```{r, include=FALSE, message=FALSE}
 library(table1)
 citizenship_continent <- c("Africa", "Americas", "Asia", "Europe", "Oceania")
 
@@ -130,20 +131,20 @@ for (continent in citizenship_continent) {
     select(citizenship_continent, `Departure Destination`, administration)  
   assign(df_name, data_continent, envir = .GlobalEnv)
 }
+```
+```{r, echo=FALSE}
 table1_data_overall <-
     arrests |> 
     filter(!is.na(departure_continent)) |>
     rename(`Departure Destination` = departure_destination)
-```
-```{r, echo=FALSE}
-#| column: margin
+
 table1(~`Departure Destination` | administration,
            data = table1_data_overall,
            overall = FALSE,
            caption = "Departure destinations of all arrestees by citizenship continent")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, include=FALSE}
 #| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_africa,
@@ -151,14 +152,14 @@ table1(~`Departure Destination` | administration,
        caption = "Departure destinations of African citizens")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, include=FALSE}
 #| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_americas,
        overall = FALSE,
        caption = "Departure destinations of American citizens")
 ```
-```{r, echo=FALSE}
+```{r, echo=FALSE, include=FALSE}
 #| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_asia,
@@ -166,7 +167,7 @@ table1(~`Departure Destination` | administration,
        caption = "Departure destinations of Asian citizens")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, include=FALSE}
 #| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_europe,
@@ -174,7 +175,7 @@ table1(~`Departure Destination` | administration,
        caption = "Departure destinations of European citizens")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, include=FALSE}
 #| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_oceania,
