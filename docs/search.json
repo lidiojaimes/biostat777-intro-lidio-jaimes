@@ -4,14 +4,14 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Johns Hopkins, Bloomberg School of Public Health | Baltimore, MD\nSc.M. in Biostatistics | Expected: May 2027\nThe University of Georgia | Athens, GA\nB.S. in Statistics and Minor in Public Health | May 2025"
+    "text": "Johns Hopkins University, Bloomberg School of Public Health Baltimore, MD Sc.M. in Biostatistics | Expected: May 2027\nThe University of Georgia Athens, GA B.S. in Statistics and Minor in Public Health | May 2025"
   },
   {
     "objectID": "about.html#education",
     "href": "about.html#education",
     "title": "About",
     "section": "",
-    "text": "Johns Hopkins, Bloomberg School of Public Health | Baltimore, MD\nSc.M. in Biostatistics | Expected: May 2027\nThe University of Georgia | Athens, GA\nB.S. in Statistics and Minor in Public Health | May 2025"
+    "text": "Johns Hopkins University, Bloomberg School of Public Health Baltimore, MD Sc.M. in Biostatistics | Expected: May 2027\nThe University of Georgia Athens, GA B.S. in Statistics and Minor in Public Health | May 2025"
   },
   {
     "objectID": "about.html#research-interests",
@@ -25,7 +25,7 @@
     "href": "about.html#research-experience",
     "title": "About",
     "section": "Research experience",
-    "text": "Research experience\nBiostatistics Research Assistant, University of Georgia — Athens, GA | Oct 2024 – May 2025\n- Analyzed stroke patient data to identify key factors influencing severity and outcomes - Ensured data quality, conducted statistical analyses, and generated visualizations using R.\nBiostatistics Research Assistant, University of California, Irvine — Irvine, CA | Jun 2024 – Aug 2024\n- Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts - Conducted data wrangling, visualization, and longitudinal modeling using R and Git/Github for version control.\nBiostatistics Research Assistant, Columbia University — New York, NY | Jun 2023 – Jul 2023\n- Studied medical cost trajectories for lung cancer patients using R.\n- Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses."
+    "text": "Research experience\nBiostatistics Research Assistant, University of Georgia — Athens, GA | Oct 2024 – May 2025\n- Analyzed stroke patient data to identify key factors influencing severity and outcomes\n- Ensured data quality, conducted statistical analyses, and generated visualizations using R\nBiostatistics Research Assistant, University of California, Irvine — Irvine, CA | Jun 2024 – Aug 2024\n- Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts\n- Conducted data wrangling, visualization, and longitudinal modeling using R with version control via Git/GitHub\nBiostatistics Research Assistant, Columbia University — New York, NY | Jun 2023 – Jul 2023\n- Studied medical cost trajectories for lung cancer patients using R\n- Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses"
   },
   {
     "objectID": "about.html#publications",
