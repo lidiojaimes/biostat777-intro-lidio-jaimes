@@ -14,16 +14,19 @@ I am interested in survival analysis and longitudinal data analysis, with applic
 ## Research experience
 
 <strong>Biostatistics Research Assistant</strong> <span style="float: right;">Oct 2024 – May 2025</span><br>
-University of Georgia <span style="float: right;">Athens, GA</span><br>  
+University of Georgia <span style="float: right;">Athens, GA</span><br>
+<div style="clear: both;"></div>
 - Analyzed stroke patient data to identify key factors influencing severity and outcomes  
 - Ensured data quality, conducted statistical analyses, and generated visualizations using R  
 
 <strong>Biostatistics Research Assistant</strong> <span style="float: right;">Jun 2024 – Aug 2024</span><br>
-University of California, Irvine <span style="float: right;">Irvine, CA</span><br>  
+University of California, Irvine <span style="float: right;">Irvine, CA</span><br>
+<div style="clear: both;"></div>
 - Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts  
 - Conducted data wrangling, visualization, and longitudinal modeling using R with version control via Git/GitHub  
 
 <strong>Biostatistics Research Assistant</strong> <span style="float: right;">Jun 2023 – Jul 2023</span><br>
-Columbia University, Mailman School of Public Health <span style="float: right;">New York, NY</span><br>  
+Columbia University, Mailman School of Public Health <span style="float: right;">New York, NY</span><br>
+<div style="clear: both;"></div>
 - Studied medical cost trajectories for lung cancer patients using R  
 - Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses
