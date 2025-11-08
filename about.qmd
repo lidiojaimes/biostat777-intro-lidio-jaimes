@@ -1,15 +1,12 @@
----
-title: "About"
----
-
 ## Education
-<span style="color:#003D9C; font-weight:bold;">Johns Hopkins University, Bloomberg School of Public Health</span> <span style="float: right;"><em>Baltimore, MD</em></span><br>
-<strong>Sc.M. in Biostatistics</strong> | <em>Expected: May 2027</em>
+<span style="color:#003D9C; font-weight:bold;">Johns Hopkins University, Bloomberg School of Public Health</span>
+<span style="float: right;">Baltimore, MD</span><br>
+Sc.M. in Biostatistics <span style="float: right;">Expected: May 2027</span>
 
 
-<span style="color:#BA0C2F; font-weight:bold;">The University of Georgia</span> <span style="float: right;"><em>Athens, GA</em></span><br>
-<strong>B.S. in Statistics and Minor in Public Health</strong> | <em>May 2025</em>
-
+<span style="color:#BA0C2F; font-weight:bold;">The University of Georgia</span>
+<span style="float: right;">Athens, GA</span><br>
+B.S. in Statistics and Minor in Public Health <span style="float: right;">May 2025</span>
 
 ## Research interests
 I am interested in survival analysis and longitudinal data analysis, with applications in aging research and clinical trials. I look forward to deepening my expertise in biostatistics and building a meaningful career in the field.
