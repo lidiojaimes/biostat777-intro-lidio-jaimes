@@ -11,7 +11,7 @@ The data comes from the Deportation Data Project [@deportationdataproject2025], 
 ```{r, echo=FALSE}
 knitr::include_graphics("files-docs/protest-pic.jpg")
 ```
-[Photo by @instagram_author_2025]
+Photo from [coloralamexicana][@instagram_author_2025].
 
 # Data Wrangling
 ```{r,message=FALSE}
@@ -341,10 +341,10 @@ I then decided to examine apprehension methods across the USA. According to the 
 
 When examining the age distributions of arrestees under the two administrations, there does not appear to be a noticeable difference between administrations. The median age for the Biden administration is slightly lower at 22 years, compared to 23 years for the Trump administration.
 
-Back to my original question, it appears that ICE arrests since January 2025 have increasingly targeted undocumented individuals without a criminal history. I also want to acknowledge that this analysis was inspired by this post from Dr. Jean Fan [@fan2025bsky] that was shown in 140.776.
-
-# References
+Back to my original question, it appears that ICE arrests since January 2025 have increasingly targeted undocumented individuals without a criminal history. I also want to acknowledge that this analysis was inspired by a post from Dr. Jean Fan [@fan2025bsky], which was shown in 140.776.
 
 # Functions Used
 - dplyr: `mutate()`, `filter()`, `if_else()`, `case_when()`, `select()`, `group_by()`, `summarise()`, `rename()`, `count()`
 - ggplot2: `ggplot()`, `aes()`, `geom_point()`, `geom_line()`, `theme_bw()`, `theme()`, `labs()`, `geom_vline()`, `scale_fill_brewer()`, `geom_bar()`, `facet_wrap()`, `geom_violin()`, `geom_boxplot()`
+
+# References
