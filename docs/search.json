@@ -25,7 +25,7 @@
     "href": "data-analysis.html",
     "title": "Example Analysis",
     "section": "",
-    "text": "In this analysis, I will use data pertaining to ICE Arrests from Sep. 2023 to late Jul. 2025. The question I aim to answer is if recent arrests (January 2025 – present) target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one.\nThe data comes from the Deportation Data Project (Project 2025a), and its data dictionary can be found (Project 2025b).\n\n\n\n\n\n\n\n\n\nPhoto from [coloralamexicana](coloralamexicana 2025)."
+    "text": "In this analysis, I will use data pertaining to ICE Arrests from Sep. 2023 to late Jul. 2025. The question I aim to answer is if recent arrests (January 2025 – present) target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one.\nThe data comes from the Deportation Data Project ((Homepage) 2025). I used the ICE Arrests Processed dataset. The data dictionary can be found ((Codebook) 2025).\n\n\n\n\n\n\n\n\n\nPhoto from [coloralamexicana](coloralamexicana 2025)."
   },
   {
     "objectID": "data-analysis.html#criminality-of-arestees",
