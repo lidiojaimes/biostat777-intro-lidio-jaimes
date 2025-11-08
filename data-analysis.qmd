@@ -131,6 +131,7 @@ for (continent in citizenship_continent) {
   assign(df_name, data_continent, envir = .GlobalEnv)
 }
 
+library(table1)
 table1_data_overall <-
     arrests |> 
     filter(!is.na(departure_continent)) |>
