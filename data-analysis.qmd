@@ -11,7 +11,7 @@ The data comes from the Deportation Data Project [@deportationdataproject2025]. 
 ```{r, echo=FALSE}
 knitr::include_graphics("files-docs/protest-pic.jpg")
 ```
-Photo from [coloralamexicana][@instagram_author_2025].
+Photo from coloralamexicana on Instagram [@instagram_author_2025].
 
 # Data Wrangling
 ```{r,message=FALSE}
@@ -227,7 +227,7 @@ arrests |>
 
 News reports have also highlighted an increase in arrests in California. I am interested in seeing the different methods of apprehension used in this state, and how their usage has changed over time.
 
-In California, the three most common methods of apprehension for undocumented individuals are efforts to locate individuals, non-custodial arrests, and the Criminal Alien Program (CAP). The next most common is an unspecified “other efforts,” which was grouped together with less common methods of apprehension for the purpose of visualization.
+In California, the three most common methods of apprehension for undocumented individuals are efforts to locate individuals, non-custodial arrests, and the Criminal Alien Program (CAP). The next most common is an unspecified “other efforts,” which was grouped together with less common methods of apprehension for the purpose of visualization. All the apprehension methods used in California are shown in the margin table.
 
 ```{r}
 #| column: margin
