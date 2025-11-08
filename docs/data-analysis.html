@@ -161,9 +161,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a>
   <ul class="collapse">
   <li><a href="#criminality-of-arestees" id="toc-criminality-of-arestees" class="nav-link" data-scroll-target="#criminality-of-arestees">Criminality of Arestees</a></li>
-  <li><a href="#departure-destination-of-arrestees" id="toc-departure-destination-of-arrestees" class="nav-link" data-scroll-target="#departure-destination-of-arrestees">Departure destination of arrestees</a></li>
-  <li><a href="#methods-of-apprehension-in-california-for-non-criminal-undocumented-individuals" id="toc-methods-of-apprehension-in-california-for-non-criminal-undocumented-individuals" class="nav-link" data-scroll-target="#methods-of-apprehension-in-california-for-non-criminal-undocumented-individuals">Methods of Apprehension in California for Non-Criminal Undocumented Individuals</a></li>
+  <li><a href="#departure-destination-of-arrestees" id="toc-departure-destination-of-arrestees" class="nav-link" data-scroll-target="#departure-destination-of-arrestees">Departure Destination of Arrestees</a></li>
+  <li><a href="#methods-of-apprehension" id="toc-methods-of-apprehension" class="nav-link" data-scroll-target="#methods-of-apprehension">Methods of Apprehension</a></li>
+  <li><a href="#age-distribution-of-arestess" id="toc-age-distribution-of-arestess" class="nav-link" data-scroll-target="#age-distribution-of-arestess">Age Distribution of Arestess</a></li>
   </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#functions-used" id="toc-functions-used" class="nav-link" data-scroll-target="#functions-used">Functions Used</a></li>
   </ul>
 </nav>
@@ -192,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>In this analysis, we will use data pertaining to ICE Arrests from Sep.&nbsp;2023 to Jul.&nbsp;2025. The question I aim to answer is if recent arrests (January 2025 – present)target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one.</p>
+<p>In this analysis, I will use data pertaining to ICE Arrests from Sep.&nbsp;2023 to late Jul.&nbsp;2025. The question I aim to answer is if recent arrests (January 2025 – present)target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one.</p>
 <p>The data comes from <a href="https://deportationdata.org/data/ice.html">The Deportation Data Project</a> and its data dictionary can be found <a href="https://deportationdata.org/docs/ice/codebook.html">here</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -263,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        apprehension_date_my, apprehension_criminality, apprehension_state, apprehension_method, </span>
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        citizenship_continent, departure_continent, departure_destination, </span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        administration</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        administration, birth_year</span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -314,7 +316,7 @@ Note
 </div>
 </section>
 <section id="departure-destination-of-arrestees" class="level2">
-<h2 class="anchored" data-anchor-id="departure-destination-of-arrestees">Departure destination of arrestees</h2>
+<h2 class="anchored" data-anchor-id="departure-destination-of-arrestees">Departure Destination of Arrestees</h2>
 <p>I am interested in seeing where ICE arrestees are being deported under the two different administrations, particularly whether individuals deported to countries other than their country of origin are being sent to destinations within the same continent or not.</p>
 <p>Four individuals with citizenship from Yugoslavia were deported to other European countries since the nation no longer exists. The destinations were Serbia, North Macedonia, and Montenegro (two cases), all of which are part of what was once Yugoslavia. These cases were categorized under the “Europe” continent for this analysis and not under “Country of Origin”.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -447,18 +449,17 @@ Note
 </div>
 </div>
 </section>
-<section id="methods-of-apprehension-in-california-for-non-criminal-undocumented-individuals" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="methods-of-apprehension-in-california-for-non-criminal-undocumented-individuals">Methods of Apprehension in California for Non-Criminal Undocumented Individuals</h2>
-<p>California has recently seen a surge in ICE arrests since January 2025. I am interested in seeing the different methods of apprehension used for undocumented individuals with no criminal history in California, and how these methods have changed over time.</p>
-<p>In California, the three most common methods of apprehension for non-criminal individuals are non-custodial arrests, efforts to locate individuals, and unspecified “other efforts.” The less common methods of apprehension were grouped together under “other efforts” for the purpose of visualization.</p>
+<section id="methods-of-apprehension" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="methods-of-apprehension">Methods of Apprehension</h2>
+<p>California has recently seen a surge in ICE arrests since January 2025. I am interested in seeing the different methods of apprehension used in this state, and how these methods have changed over time.</p>
+<p>In California, the three most common methods of apprehension for undocumented individuals are efforts to locate individuals, non-custodial arrests, and the Criminal Alien Program (CAP). The next most common is an unspecified “other efforts,” which was grouped together with less common methods of apprehension for the purpose of visualization.</p>
 <div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(apprehension_state <span class="sc">==</span> <span class="st">"CALIFORNIA"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           apprehension_criminality <span class="sc">==</span> <span class="st">"3 Other Immigration Violator"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(apprehension_method, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="st">`</span><span class="at">Apprehension Method</span><span class="st">`</span> <span class="ot">=</span> apprehension_method,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">Count =</span> n) <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(apprehension_state <span class="sc">==</span> <span class="st">"CALIFORNIA"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(apprehension_method, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="st">`</span><span class="at">Apprehension Method</span><span class="st">`</span> <span class="ot">=</span> apprehension_method,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">Count =</span> n) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 <div class="no-row-height column-margin column-container"><div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -470,52 +471,68 @@ Note
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Non-Custodial Arrest</td>
-<td style="text-align: right;">2020</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Located</td>
-<td style="text-align: right;">1381</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Other efforts</td>
-<td style="text-align: right;">420</td>
+<td style="text-align: right;">3885</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">CAP Local Incarceration</td>
-<td style="text-align: right;">104</td>
+<td style="text-align: left;">Non-Custodial Arrest</td>
+<td style="text-align: right;">3597</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CAP Federal Incarceration</td>
-<td style="text-align: right;">44</td>
+<td style="text-align: right;">3374</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CAP State Incarceration</td>
+<td style="text-align: right;">1365</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CAP Local Incarceration</td>
+<td style="text-align: right;">1092</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other efforts</td>
+<td style="text-align: right;">579</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Probation and Parole</td>
+<td style="text-align: right;">251</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Patrol Border</td>
-<td style="text-align: right;">34</td>
+<td style="text-align: right;">45</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">CAP State Incarceration</td>
-<td style="text-align: right;">23</td>
+<td style="text-align: left;">Other Agency (turned over to INS)</td>
+<td style="text-align: right;">37</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Other Agency (turned over to INS)</td>
-<td style="text-align: right;">16</td>
+<td style="text-align: left;">Other Task Force</td>
+<td style="text-align: right;">26</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Worksite Enforcement</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Law Enforcement Agency Response Unit</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anti-Smuggling</td>
+<td style="text-align: right;">10</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Inspections</td>
-<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Other Task Force</td>
-<td style="text-align: right;">9</td>
+<td style="text-align: left;">Organized Crime Drug Enforcement Task Force</td>
+<td style="text-align: right;">6</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Anti-Smuggling</td>
-<td style="text-align: right;">6</td>
+<td style="text-align: left;">287(g) Program</td>
+<td style="text-align: right;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ERO Reprocessed Arrest</td>
@@ -526,33 +543,29 @@ Note
 <td style="text-align: right;">3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">287(g) Program</td>
+<td style="text-align: left;">Criminal Alien Program</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Law Enforcement Agency Response Unit</td>
+<td style="text-align: left;">Patrol Interior</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Patrol Interior</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Probation and Parole</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: left;">Transportation Check Aircraft</td>
+<td style="text-align: right;">2</td>
 </tr>
 </tbody>
 </table>
 </div></div></div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">apprehension_method =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(apprehension_method, <span class="st">"Non-Custodial Arrest"</span>) <span class="sc">~</span> <span class="st">"Non-Custodial Arrest"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        apprehension_method <span class="sc">==</span> <span class="st">"Located"</span> <span class="sc">~</span> <span class="st">"Located"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other efforts"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        apprehension_state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CALIFORNIA"</span>),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        apprehension_criminality <span class="sc">==</span> <span class="st">"3 Other Immigration Violator"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">apprehension_method =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">str_detect</span>(apprehension_method, <span class="st">"CAP"</span>) <span class="sc">~</span> <span class="st">"CAP Incarceration"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            apprehension_method <span class="sc">==</span> <span class="st">"Non-Custodial Arrest"</span> <span class="sc">~</span> <span class="st">"Non-Custodial Arrest"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            apprehension_method <span class="sc">==</span> <span class="st">"Located"</span> <span class="sc">~</span> <span class="st">"Located"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other efforts"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(apprehension_state <span class="sc">==</span> <span class="st">"CALIFORNIA"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(apprehension_date_my, apprehension_method) <span class="sc">|&gt;</span> </span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> apprehension_date_my, <span class="at">y =</span> count, </span>
@@ -564,9 +577,9 @@ Note
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">50</span>, <span class="at">hjust=</span><span class="dv">1</span>),</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Apprehension Methods in California for Non-Criminal Undocumented Individuals"</span>,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"How ICE has apprehended undocumented individuals with no criminal history in California"</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">"1. CAP Incarceration indicates that the individual was apprehended while incarcerated in a local, state, or </span><span class="sc">\n</span><span class="st">    federal jail or prison under the Criminal Alien Program (CAP).</span><span class="sc">\n</span><span class="st">2. Located indicates that the individual was located through other means, such as tips or referrals.</span><span class="sc">\n</span><span class="st">3. Non-Custodial Arrest indicates that the individual was apprehended in the community rather than a detention facility.</span><span class="sc">\n</span><span class="st">4. Other efforts include less common methods and are all shown in margin table."</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Apprehension Methods in California"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Most common methods ICE has used to apprehend undocumented individuals in California"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">"1. CAP Incarceration indicates that the individual was apprehended while incarcerated in a local, state, or </span><span class="sc">\n</span><span class="st">    federal jail or prison under CAP.</span><span class="sc">\n</span><span class="st">2. Located indicates the individual was apprehended by ICE while not in custody.</span><span class="sc">\n</span><span class="st">3. Non-Custodial Arrest indicates that the individual was apprehended in the community rather than a detention facility.</span><span class="sc">\n</span><span class="st">4. Other efforts include less common methods and are all shown in margin table."</span>,</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Date of arrests"</span>, </span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Number of arrests"</span>,</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Apprehension Method"</span>) <span class="sc">+</span> </span>
@@ -583,9 +596,110 @@ using the `.groups` argument.</code></pre>
 </div>
 </div>
 </div>
-<p>Your analysis must include a .bib file, which you use to reference at least three unique citations. For example, it could be to a website or paper from where the original data came from or it could be to a paper describing a method you are using to analyze the data.</p>
-<p>You must summarize your analysis and/or results with a paragraph (4-6 sentences).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">apprehension_method =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            apprehension_method <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Non-Custodial Arrest"</span>, <span class="st">"Located"</span>) <span class="sc">~</span> <span class="st">"Community"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(apprehension_date_my, apprehension_method,apprehension_criminality) <span class="sc">|&gt;</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> apprehension_date_my, <span class="at">y =</span> count,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> apprehension_criminality, <span class="at">linetype =</span> apprehension_method,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">group =</span> <span class="fu">interaction</span>(apprehension_method, apprehension_criminality))) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">50</span>, <span class="at">hjust=</span><span class="dv">1</span>),</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"General Apprehension Methods in the USA and Criminality of Arrestees"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"The number of arrests in the community versus other methods by criminality of arrestees"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">"1. Arrests in the community indicates apprehension via 'Located' method or 'non-custodial' arrests. </span><span class="sc">\n</span><span class="st">2. Other efforts include are all shown in margin table."</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Date of arrests"</span>, </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Number of arrests"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Criminality"</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">linetype =</span> <span class="st">"Apprehension Method"</span>) <span class="sc">+</span> </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="st">"Jan 2025"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'apprehension_date_my',
+'apprehension_method'. You can override using the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
+<section id="age-distribution-of-arestess" class="level2">
+<h2 class="anchored" data-anchor-id="age-distribution-of-arestess">Age Distribution of Arestess</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># | column: margin</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(birth_year<span class="sc">&gt;=</span><span class="dv">2000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">relative_age =</span> <span class="dv">2025</span> <span class="sc">-</span> birth_year) <span class="sc">|&gt;</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Administration =</span> administration) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Administration) <span class="sc">|&gt;</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="st">`</span><span class="at">Median Age</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(relative_age)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Administration</th>
+<th style="text-align: right;">Median Age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Biden</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Trump</td>
+<td style="text-align: right;">23</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>arrests <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(birth_year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">relative_age =</span> <span class="dv">2025</span> <span class="sc">-</span> birth_year,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">administration =</span> <span class="fu">factor</span>(administration, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Trump"</span>, <span class="st">"Biden"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> relative_age, <span class="at">y =</span> administration, <span class="at">fill =</span> administration)) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Ages by Administration"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Age"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Administration"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Since January 2025, the number of ICE arrests has notably increased across the U.S. There has been a shift in the criminality of arrestees, with a larger number of individuals with no criminal history being more targeted compared to previous periods. The number of arrests of individuals with criminal convictions or pending charges has remained relatively stable within each administration.</p>
+<p>In the news, reports have highlighted cases of people being deported to countries other than their own under the current administration. Across both administrations, I saw that the majority of arrestees are still being deported to their country of origin, and there is no visible difference. When examining the proportions of individuals deported to other destinations, there is a 1.7% difference between the two administrations (Biden: 1.5%, Trump: 3.2%).</p>
+<p>News reports have also highlighted an increase in arrests in California. When examining the methods of apprehension used in the state, there has been a noticeable rise in non-custodial arrests and those using the “Located” method since January 2025. Historically, since September 2023, ICE primarily relied on CAP incarceration to apprehend undocumented individuals in California, but this changed in May 2025.</p>
+<p>I then decided to examine apprehension methods across the USA. According to the Deportation Data Project, the terms “Located” and “Non-Custodial Arrest” refer to arrests in the community, such as raids. I am interested in analyzing how these community-based apprehension methods have been used, particularly with respect to the criminality of the arrestees. Since January 2025, community-based apprehensions of individuals with no criminal history have increased drastically, while other methods have remained relatively stable within the current administration. In June 2025, ICE’s use of these community-based methods to apprehend non-criminal individuals surpassed all other combinations of apprehension method and criminality.</p>
+<p>Finally, I examined differences in the age distribution of arrestees under the two administrations, focusing on younger individuals. Among arrestees under 25, there does not appear to be a noticeable difference in the distribution between administrations. The median age for the Biden administration is slightly lower at 22 years, compared to 23 years for the Trump administration.</p>
 </section>
 <section id="functions-used" class="level1">
 <h1>Functions Used</h1>
