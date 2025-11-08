@@ -8,9 +8,9 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
         text: About
-      - data-analysis.qmd
+      - href: data-analysis.qmd
         text: Example Data Analysis
 
 format:
