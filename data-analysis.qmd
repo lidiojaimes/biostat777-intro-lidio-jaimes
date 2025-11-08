@@ -4,7 +4,7 @@ format: html
 bibliography: references.bib
 ---
 # Introduction
-In this analysis, we will use data pertaining to ICE Arrests from Sep. 2023 to Jul. 2025. The question I aim to answer is if recent arrests (January 2025 – present)target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one. 
+In this analysis, I will use data pertaining to ICE Arrests from Sep. 2023 to late Jul. 2025. The question I aim to answer is if recent arrests (January 2025 – present)target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one. 
 
 The data comes from [The Deportation Data Project](https://deportationdata.org/data/ice.html) and its data dictionary can be found [here](https://deportationdata.org/docs/ice/codebook.html).
 
@@ -72,7 +72,7 @@ arrests <-
     select(
         apprehension_date_my, apprehension_criminality, apprehension_state, apprehension_method, 
         citizenship_continent, departure_continent, departure_destination, 
-        administration
+        administration, birth_year
         )
 ```
 
@@ -106,7 +106,7 @@ arrests |>
 ```
 
 
-## Departure destination of arrestees
+## Departure Destination of Arrestees
 
 I am interested in seeing where ICE arrestees are being deported under the two different administrations, particularly whether individuals deported to countries other than their country of origin are being sent to destinations within the same continent or not.
 
@@ -221,17 +221,16 @@ arrests |>
     scale_fill_brewer(palette = "Set1")
 ```
 
-## Methods of Apprehension in California for Non-Criminal Undocumented Individuals
+## Methods of Apprehension
 
-California has recently seen a surge in ICE arrests since January 2025. I am interested in seeing the different methods of apprehension used for undocumented individuals with no criminal history in California, and how these methods have changed over time.
+California has recently seen a surge in ICE arrests since January 2025. I am interested in seeing the different methods of apprehension used in this state, and how these methods have changed over time.
 
-In California, the three most common methods of apprehension for non-criminal individuals are non-custodial arrests, efforts to locate individuals, and unspecified “other efforts.” The less common methods of apprehension were grouped together under “other efforts” for the purpose of visualization.
+In California, the three most common methods of apprehension for undocumented individuals are efforts to locate individuals, non-custodial arrests, and the Criminal Alien Program (CAP). The next most common is an unspecified “other efforts,” which was grouped together with less common methods of apprehension for the purpose of visualization.
 
 ```{r}
 #| column: margin
 arrests |> 
-    filter(apprehension_state == "CALIFORNIA",
-           apprehension_criminality == "3 Other Immigration Violator") |> 
+    filter(apprehension_state == "CALIFORNIA") |> 
     count(apprehension_method, sort = TRUE) |> 
     rename(`Apprehension Method` = apprehension_method,
            Count = n) |>
@@ -240,13 +239,13 @@ arrests |>
 
 ```{r}
 arrests |> 
-    mutate(apprehension_method = case_when(
-        str_detect(apprehension_method, "Non-Custodial Arrest") ~ "Non-Custodial Arrest",
-        apprehension_method == "Located" ~ "Located",
-        TRUE ~ "Other efforts")) |> 
-    filter(
-        apprehension_state %in% c("CALIFORNIA"),
-        apprehension_criminality == "3 Other Immigration Violator") |>
+    mutate(
+        apprehension_method = case_when(
+            str_detect(apprehension_method, "CAP") ~ "CAP Incarceration",
+            apprehension_method == "Non-Custodial Arrest" ~ "Non-Custodial Arrest",
+            apprehension_method == "Located" ~ "Located",
+            TRUE ~ "Other efforts")) |> 
+    filter(apprehension_state == "CALIFORNIA") |>
     group_by(apprehension_date_my, apprehension_method) |> 
     summarise(count = n()) |> 
     ggplot(aes(x = apprehension_date_my, y = count, 
@@ -258,20 +257,85 @@ arrests |>
         axis.text.x = element_text(angle = 50, hjust=1),
         plot.caption = element_text(hjust = 0),
         legend.position = "bottom") +
-    labs(title = "Apprehension Methods in California for Non-Criminal Undocumented Individuals",
-         subtitle = "How ICE has apprehended undocumented individuals with no criminal history in California",
-         caption = "1. CAP Incarceration indicates that the individual was apprehended while incarcerated in a local, state, or \n    federal jail or prison under the Criminal Alien Program (CAP).\n2. Located indicates that the individual was located through other means, such as tips or referrals.\n3. Non-Custodial Arrest indicates that the individual was apprehended in the community rather than a detention facility.\n4. Other efforts include less common methods and are all shown in margin table.",
+    labs(title = "Apprehension Methods in California",
+         subtitle = "Most common methods ICE has used to apprehend undocumented individuals in California",
+         caption = "1. CAP Incarceration indicates that the individual was apprehended while incarcerated in a local, state, or \n    federal jail or prison under CAP.\n2. Located indicates the individual was apprehended by ICE while not in custody.\n3. Non-Custodial Arrest indicates that the individual was apprehended in the community rather than a detention facility.\n4. Other efforts include less common methods and are all shown in margin table.",
          x = "Date of arrests", 
          y = "Number of arrests",
          color = "Apprehension Method") + 
     geom_vline(xintercept = "Jan 2025")
 ```
 
+```{r}
+arrests |> 
+    mutate(
+        apprehension_method = case_when(
+            apprehension_method %in% c("Non-Custodial Arrest", "Located") ~ "Community",
+            TRUE ~ "Other")) |> 
+    group_by(apprehension_date_my, apprehension_method,apprehension_criminality) |> 
+    summarise(count = n()) |> 
+    ggplot(
+        aes(x = apprehension_date_my, y = count,
+            color = apprehension_criminality, linetype = apprehension_method,
+            group = interaction(apprehension_method, apprehension_criminality))) +
+    geom_point() + 
+    geom_line() + 
+    theme_bw() + 
+    theme(
+        axis.text.x = element_text(angle = 50, hjust=1),
+        plot.caption = element_text(hjust = 0),
+        legend.position = "right") +
+    labs(title = "General Apprehension Methods in the USA and Criminality of Arrestees",
+         subtitle = "The number of arrests in the community versus other methods by criminality of arrestees",
+         caption = "1. Arrests in the community indicates apprehension via 'Located' method or 'non-custodial' arrests. \n2. Other efforts include are all shown in margin table.",
+         x = "Date of arrests", 
+         y = "Number of arrests",
+         color = "Criminality",
+         linetype = "Apprehension Method") + 
+    geom_vline(xintercept = "Jan 2025")
+```
 
-Your analysis must include a .bib file, which you use to reference at least three unique citations. For example, it could be to a website or paper from where the original data came from or it could be to a paper describing a method you are using to analyze the data.
+## Age Distribution of Arestess
 
+```{r}
+# | column: margin
+arrests |> 
+    filter(birth_year>=2000) |> 
+    mutate(relative_age = 2025 - birth_year) |> 
+    rename(Administration = administration) |>
+    group_by(Administration) |> 
+    summarise(`Median Age` = median(relative_age)) |> 
+    knitr::kable()
+```
 
-You must summarize your analysis and/or results with a paragraph (4-6 sentences).
+```{r}
+arrests |> 
+    filter(birth_year >= 2000) |> 
+    mutate(
+        relative_age = 2025 - birth_year,
+        administration = factor(administration, levels = c("Trump", "Biden"))) |>
+    ggplot(aes(x = relative_age, y = administration, fill = administration)) +
+    geom_violin(alpha = 0.3) +
+    geom_boxplot(width = 0.15) +
+    theme_bw() +
+    theme(legend.position = "none") +
+    labs(title = "Distribution of Ages by Administration",
+         x = "Age",
+         y = "Administration"
+        )
+```
+
+# Conclusion
+
+Since January 2025, the number of ICE arrests has notably increased across the U.S. There has been a shift in the criminality of arrestees, with a larger number of individuals with no criminal history being more targeted compared to previous periods. The number of arrests of individuals with criminal convictions or pending charges has remained relatively stable within each administration.
+
+In the news, reports have highlighted cases of people being deported to countries other than their own under the current administration. Across both administrations, I saw that the majority of arrestees are still being deported to their country of origin, and there is no visible difference. When examining the proportions of individuals deported to other destinations, there is a 1.7% difference between the two administrations (Biden: 1.5%, Trump: 3.2%).
+
+News reports have also highlighted an increase in arrests in California. When examining the methods of apprehension used in the state, there has been a noticeable rise in non-custodial arrests and those using the “Located” method since January 2025. Historically, since September 2023, ICE primarily relied on CAP incarceration to apprehend undocumented individuals in California, but this changed in May 2025.
+
+I then decided to examine apprehension methods across the USA. According to the Deportation Data Project, the terms “Located” and “Non-Custodial Arrest” refer to arrests in the community, such as raids. I am interested in analyzing how these community-based apprehension methods have been used, particularly with respect to the criminality of the arrestees. Since January 2025, community-based apprehensions of individuals with no criminal history have increased drastically, while other methods have remained relatively stable within the current administration. In June 2025, ICE’s use of these community-based methods to apprehend non-criminal individuals surpassed all other combinations of apprehension method and criminality.
+
+Finally, I examined differences in the age distribution of arrestees under the two administrations, focusing on younger individuals. Among arrestees under 25, there does not appear to be a noticeable difference in the distribution between administrations. The median age for the Biden administration is slightly lower at 22 years, compared to 23 years for the Trump administration.
 
 # Functions Used
 - dplyr: `mutate()`, `filter()`, `if_else()`, `case_when()`, `select()`, `group_by()`, `summarise()`, `rename()`, `count()`
