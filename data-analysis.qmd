@@ -7,12 +7,12 @@ In this analysis, we will use data pertaining to ICE Arrests from Sep. 2023 to J
 
 The data comes from [The Deportation Data Project](https://deportationdata.org/data/ice.html) and its data dictionary can be found [here](https://deportationdata.org/docs/ice/codebook.html).
 
-```{r}
+```{r, include=FALSE}
 knitr::include_graphics("files-docs/protest-pic.jpg")
 ```
 
 # Data Wrangling
-```{r}
+```{r,message=FALSE}
 library(tidyverse)
 library(countrycode)
 
@@ -82,7 +82,7 @@ The data does not include the full month of July. Therefore, I have excluded dat
 # Data Visualization
 
 ## Criminality of Arestees
-```{r}
+```{r, message=FALSE}
 arrests |> 
     filter(apprehension_date_my != "Jul 2025") |>
     group_by(apprehension_date_my, apprehension_criminality) |> 
@@ -97,7 +97,7 @@ arrests |>
           legend.position = "bottom") +
     labs(title = "ICE arrests over time and the criminality of the arrestees",
          subtitle = "Data from Sep. 2023 to Jun. 2025",
-         caption = "Convicted criminal is defined as someone with at least one criminal conviction. \nPending criminal charges is defined as someone with no criminal convictions but at least one criminal charge. \nOther Immigration Violation is defined as someone with no charges or convictions.",
+         caption = "1. Convicted criminal is defined as someone with at least one criminal conviction.\n2. Pending criminal charges is defined as someone with no criminal convictions but at least one criminal charge.\n3. Other Immigration Violation is defined as someone with no charges or convictions.",
          x = "Date of arrests", 
          y = "Number of arrests",
          color = "Criminality") + 
@@ -115,8 +115,8 @@ Four individuals with citizenship from Yugoslavia were deported to other Europea
 The data dictinionary does not specify whether missing values in `departure_country` indicate that the arrestee was not deported or if the data was simply not recorded. Therefore, analyses involving departure destinations only include cases with non-missing `departure_country` values.
 :::
 
-```{r}
-#| column: margin
+```{r, message=FALSE}
+library(table1)
 citizenship_continent <- c("Africa", "Americas", "Asia", "Europe", "Oceania")
 
 for (continent in citizenship_continent) {
@@ -130,33 +130,38 @@ for (continent in citizenship_continent) {
     select(citizenship_continent, `Departure Destination`, administration)  
   assign(df_name, data_continent, envir = .GlobalEnv)
 }
-
-library(table1)
 table1_data_overall <-
     arrests |> 
     filter(!is.na(departure_continent)) |>
     rename(`Departure Destination` = departure_destination)
-
+```
+```{r}
+#| column: margin
 table1(~`Departure Destination` | administration,
            data = table1_data_overall,
            overall = FALSE,
            caption = "Departure destinations of all arrestees by citizenship continent")
+#| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_africa,
        overall = FALSE,
        caption = "Departure destinations of African citizens")
+#| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_americas,
        overall = FALSE,
        caption = "Departure destinations of American citizens")
+#| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_asia,
        overall = FALSE,
        caption = "Departure destinations of Asian citizens")
+#| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_europe,
        overall = FALSE,
        caption = "Departure destinations of European citizens")
+#| column: margin
 table1(~`Departure Destination` | administration,
        data = table1_data_oceania,
        overall = FALSE,
@@ -213,7 +218,8 @@ arrests |>
     filter(apprehension_state == "CALIFORNIA",
            apprehension_criminality == "3 Other Immigration Violator") |> 
     count(apprehension_method, sort = TRUE) |> 
-    print(n = Inf) |> 
+    rename(`Apprehension Method` = apprehension_method,
+           Count = n) |>
     knitr::kable()
 ```
 
@@ -237,9 +243,9 @@ arrests |>
         axis.text.x = element_text(angle = 50, hjust=1),
         plot.caption = element_text(hjust = 0),
         legend.position = "bottom") +
-    labs(title = "Methods of Apprehension in California for Non-Criminal Undocumented Individuals",
-         subtitle = "How ICE is apprehending undocumented individuals with no criminal history in California over time",
-         caption = "1. CAP Incarceration indicates that the individual was apprehended while incarcerated in a local, state, or \n    federal jail or prison under the Criminal Alien Program (CAP).\n2. Located indicates that the individual was located through other means, such as tips or referrals.\n3. Non-Custodial Arrest indicates that the individual was apprehended in the community rather than in a detention facility.\n4. Other efforts include less common methods and are all shown in margin table.",
+    labs(title = "Apprehension Methods in California for Non-Criminal Undocumented Individuals",
+         subtitle = "How ICE has apprehended undocumented individuals with no criminal history in California",
+         caption = "1. CAP Incarceration indicates that the individual was apprehended while incarcerated in a local, state, or \n    federal jail or prison under the Criminal Alien Program (CAP).\n2. Located indicates that the individual was located through other means, such as tips or referrals.\n3. Non-Custodial Arrest indicates that the individual was apprehended in the community rather than a detention facility.\n4. Other efforts include less common methods and are all shown in margin table.",
          x = "Date of arrests", 
          y = "Number of arrests",
          color = "Apprehension Method") + 
