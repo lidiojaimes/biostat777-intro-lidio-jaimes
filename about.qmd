@@ -2,8 +2,13 @@
 title: "About"
 ---
 
-## Educational background
-I graduated from the University of Georgia in May 2025 with my B.S. in Statistics and started my program here in August 2025. 
+## Education
+\color{blue}{Johns Hopkins, Bloomberg School of Public Health}, *Baltimore, MD* 
+Sc.M. in Biostatistics, *Expected: May 2027*
+
+\color{red}{The University of Georgia}, *Athens, GA* 
+B.S. in Statistics and Minor in Public Health, *May 2025*
+
 
 ## Research interests
 I am interested in survival analysis and longitudinal data analysis, with applications in aging research and clinical trials. I look forward to deepening my expertise in biostatistics and building a meaningful career in the field.
