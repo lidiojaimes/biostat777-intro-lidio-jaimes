@@ -13,21 +13,17 @@ I am interested in survival analysis and longitudinal data analysis, with applic
 
 ## Research experience
 
-**Biostatistics Research Assistant**, University of Georgia — Athens, GA | Oct 2024 – May 2025  
+<strong>Biostatistics Research Assistant</strong> <span style="float: right;">Oct 2024 – May 2025</span><br>
+University of Georgia <span style="float: right;">Athens, GA</span><br>  
 - Analyzed stroke patient data to identify key factors influencing severity and outcomes  
 - Ensured data quality, conducted statistical analyses, and generated visualizations using R  
 
-**Biostatistics Research Assistant**, University of California, Irvine — Irvine, CA | Jun 2024 – Aug 2024  
+<strong>Biostatistics Research Assistant</strong> <span style="float: right;">Jun 2024 – Aug 2024</span><br>
+University of California, Irvine <span style="float: right;">Irvine, CA</span><br>  
 - Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts  
 - Conducted data wrangling, visualization, and longitudinal modeling using R with version control via Git/GitHub  
 
-**Biostatistics Research Assistant**, Columbia University — New York, NY | Jun 2023 – Jul 2023  
+<strong>Biostatistics Research Assistant</strong> <span style="float: right;">Jun 2023 – Jul 2023</span><br>
+Columbia University, Mailman School of Public Health <span style="float: right;">New York, NY</span><br>  
 - Studied medical cost trajectories for lung cancer patients using R  
 - Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses
-
-## Publications
-
-<p style="margin-left: 0; text-indent: -1.5em; padding-left: 1.5em;">
-Magana-Ramirez C., Gillen D., Hom C., <strong>Jaimes L.</strong>, Chilukuri S., McMahon N., Lin C., Kuhlman R., Hu T., Head L., Lott I., & Sultzer D. 
-“Neuropsychiatric symptoms and emerging dementia in people with Down syndrome and older adults.” <em>Alzheimer's Dement</em>. 2025; (accepted and in production)
-</p>
