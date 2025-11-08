@@ -25,14 +25,7 @@
     "href": "about.html#research-experience",
     "title": "Lidio Jaimes Jr",
     "section": "Research experience",
-    "text": "Research experience\nBiostatistics Research Assistant, University of Georgia — Athens, GA | Oct 2024 – May 2025\n- Analyzed stroke patient data to identify key factors influencing severity and outcomes\n- Ensured data quality, conducted statistical analyses, and generated visualizations using R\nBiostatistics Research Assistant, University of California, Irvine — Irvine, CA | Jun 2024 – Aug 2024\n- Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts\n- Conducted data wrangling, visualization, and longitudinal modeling using R with version control via Git/GitHub\nBiostatistics Research Assistant, Columbia University — New York, NY | Jun 2023 – Jul 2023\n- Studied medical cost trajectories for lung cancer patients using R\n- Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses"
-  },
-  {
-    "objectID": "about.html#publications",
-    "href": "about.html#publications",
-    "title": "Lidio Jaimes Jr",
-    "section": "Publications",
-    "text": "Publications\n\nMagana-Ramirez C., Gillen D., Hom C., Jaimes L., Chilukuri S., McMahon N., Lin C., Kuhlman R., Hu T., Head L., Lott I., & Sultzer D. “Neuropsychiatric symptoms and emerging dementia in people with Down syndrome and older adults.” Alzheimer’s Dement. 2025; (accepted and in production)"
+    "text": "Research experience\nBiostatistics Research Assistant Oct 2024 – May 2025 University of Georgia Athens, GA\n- Analyzed stroke patient data to identify key factors influencing severity and outcomes\n- Ensured data quality, conducted statistical analyses, and generated visualizations using R\nBiostatistics Research Assistant Jun 2024 – Aug 2024 University of California, Irvine Irvine, CA\n- Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts\n- Conducted data wrangling, visualization, and longitudinal modeling using R with version control via Git/GitHub\nBiostatistics Research Assistant Jun 2023 – Jul 2023 Columbia University, Mailman School of Public Health New York, NY\n- Studied medical cost trajectories for lung cancer patients using R\n- Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses"
   },
   {
     "objectID": "data-analysis.html",
@@ -74,6 +67,6 @@
     "href": "index.html",
     "title": "Lidio Jaimes Jr",
     "section": "",
-    "text": "I am currently a ScM Biostatistics student at Johns Hopkins BSPH. This is my first year living in Baltimore, I live really close to Penn Station!\nHelp me get to 500 on Linkedin 🙏 !"
+    "text": "I am currently a ScM Biostatistics student at Johns Hopkins BSPH. This is my first year living in Baltimore, I live really close to Penn Station!\nI enjoy watching sports (mainly Bayern and UGA) and exploring new places around the city.\n\n  Your browser does not support the video tag. \n  Your browser does not support the video tag. \n\nHelp me get to 500 on Linkedin 🙏 !"
   }
 ]
