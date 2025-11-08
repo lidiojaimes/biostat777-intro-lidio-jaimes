@@ -186,8 +186,8 @@ div.csl-indent {
   <li><a href="#age-distribution-of-arestess" id="toc-age-distribution-of-arestess" class="nav-link" data-scroll-target="#age-distribution-of-arestess">Age Distribution of Arestess</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#functions-used" id="toc-functions-used" class="nav-link" data-scroll-target="#functions-used">Functions Used</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +226,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><span class="citation" data-cites="instagram_author_2025">(Photo by <a href="#ref-instagram_author_2025" role="doc-biblioref">coloralamexicana 2025</a>)</span></p>
+<p>Photo from [coloralamexicana]<span class="citation" data-cites="instagram_author_2025">(<a href="#ref-instagram_author_2025" role="doc-biblioref">coloralamexicana 2025</a>)</span>.</p>
 </section>
 <section id="data-wrangling" class="level1">
 <h1>Data Wrangling</h1>
@@ -715,10 +715,7 @@ Note
 <p>When examining the methods of apprehension used in California, there has been a noticeable rise in non-custodial arrests and those using the “Located” method since January 2025. Historically, since September 2023, ICE primarily relied on CAP incarceration to apprehend undocumented individuals in California, but this changed in May 2025.</p>
 <p>I then decided to examine apprehension methods across the USA. According to the Deportation Data Project, the terms “Located” and “Non-Custodial Arrest” refer to arrests in the community, such as raids. I am interested in analyzing how these community-based apprehension methods have been used, particularly with respect to the criminality of the arrestees. Since January 2025, community-based apprehensions of individuals with no criminal history have increased drastically, while other methods have remained relatively stable within the current administration. In June 2025, ICE’s use of these community-based methods to apprehend non-criminal individuals surpassed all other combinations of apprehension method and criminality.</p>
 <p>When examining the age distributions of arrestees under the two administrations, there does not appear to be a noticeable difference between administrations. The median age for the Biden administration is slightly lower at 22 years, compared to 23 years for the Trump administration.</p>
-<p>Back to my original question, it appears that ICE arrests since January 2025 have increasingly targeted undocumented individuals without a criminal history. I also want to acknowledge that this analysis was inspired by this post from Dr.&nbsp;Jean Fan <span class="citation" data-cites="fan2025bsky">(<a href="#ref-fan2025bsky" role="doc-biblioref">(@jef.works) 2025</a>)</span> that was shown in 140.776.</p>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
+<p>Back to my original question, it appears that ICE arrests since January 2025 have increasingly targeted undocumented individuals without a criminal history. I also want to acknowledge that this analysis was inspired by a post from Dr.&nbsp;Jean Fan <span class="citation" data-cites="fan2025bsky">(<a href="#ref-fan2025bsky" role="doc-biblioref">Fan 2025</a>)</span>, which was shown in 140.776.</p>
 </section>
 <section id="functions-used" class="level1">
 <h1>Functions Used</h1>
@@ -726,6 +723,9 @@ Note
 <li>dplyr: <code>mutate()</code>, <code>filter()</code>, <code>if_else()</code>, <code>case_when()</code>, <code>select()</code>, <code>group_by()</code>, <code>summarise()</code>, <code>rename()</code>, <code>count()</code></li>
 <li>ggplot2: <code>ggplot()</code>, <code>aes()</code>, <code>geom_point()</code>, <code>geom_line()</code>, <code>theme_bw()</code>, <code>theme()</code>, <code>labs()</code>, <code>geom_vline()</code>, <code>scale_fill_brewer()</code>, <code>geom_bar()</code>, <code>facet_wrap()</code>, <code>geom_violin()</code>, <code>geom_boxplot()</code></li>
 </ul>
+</section>
+<section id="references" class="level1">
+
 
 
 
@@ -733,10 +733,10 @@ Note
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-instagram_author_2025" class="csl-entry" role="listitem">
-coloralamexicana. 2025. <span>“Picture of Protest Against ICE in Chicago.”</span> <a href="https://www.instagram.com/p/DPePD1YEczx/?hl=en&amp;img_index=1">https://www.instagram.com/p/DPePD1YEczx/?hl=en&amp;img_index=1</a>.
+coloralamexicana. 2025. <span>“Picture of Protest Against ICE in Chicago [Instagram Post].”</span> <a href="https://www.instagram.com/p/DPePD1YEczx/?hl=en&amp;img_index=1">https://www.instagram.com/p/DPePD1YEczx/?hl=en&amp;img_index=1</a>.
 </div>
 <div id="ref-fan2025bsky" class="csl-entry" role="listitem">
-(@jef.works), Dr. Jean Fan. 2025. <span>“<span>‘#RStats to Explore Publicly Available ICE Arrest Data’</span>.”</span> <a href="https://web-cdn.bsky.app/profile/jef.works/post/3lztdtdmles2q">https://web-cdn.bsky.app/profile/jef.works/post/3lztdtdmles2q</a>.
+Fan, Jean. 2025. <span>“#RStats to Explore Publicly Available ICE Arrest Data.”</span> <a href="https://web-cdn.bsky.app/profile/jef.works/post/3lztdtdmles2q">https://web-cdn.bsky.app/profile/jef.works/post/3lztdtdmles2q</a>.
 </div>
 <div id="ref-deportationdataproject2025" class="csl-entry" role="listitem">
 Project, Deportation Data. 2025a. <span>“Deportation Data Project Homepage.”</span> <a href="https://deportationdata.org/">https://deportationdata.org/</a>.
