@@ -115,46 +115,51 @@ Four individuals with citizenship from Yugoslavia were deported to other Europea
 The data dictinionary does not specify whether missing values in `departure_country` indicate that the arrestee was not deported or if the data was simply not recorded. Therefore, analyses involving departure destinations only include cases with non-missing `departure_country` values.
 :::
 
-```{r, eval=FALSE, include=FALSE}
-# THIS WILL BE MARGIN TABLE CONTENT
-#table_data <- 
+```{r}
+#| column: margin
+citizenship_continent <- c("Africa", "Americas", "Asia", "Europe", "Oceania")
+
+for (continent in citizenship_continent) {
+  df_name <- paste0("table1_data_", tolower(continent))
+  
+  data_continent <- 
     arrests |> 
-    filter(!is.na(departure_continent)) |> 
-    select(departure_destination, citizenship_continent, administration) |> 
-    mutate(
-        departure_destination_america = 
-            ifelse(citizenship_continent == "Americas", , "Other"),
-    )
+    filter(!is.na(departure_continent),
+           citizenship_continent == continent) |> 
+    rename(`Departure Destination` = departure_destination) |> 
+    select(citizenship_continent, `Departure Destination`, administration)  
+  assign(df_name, data_continent, envir = .GlobalEnv)
+}
 
-arrests |> 
-    filter(!is.na(departure_continent)) |> 
-    select(departure_destination, citizenship_continent, administration) |> 
-    group_by(citizenship_continent, administration) |>
-    summarise(
-        departure_destination = first(departure_destination)
-    )
+table1_data_overall <-
+    arrests |> 
+    filter(!is.na(departure_continent)) |>
+    rename(`Departure Destination` = departure_destination)
 
-library(gtsummary)
-
-arrests %>%
-  tbl_summary(
-    by = administration,
-    include = c(departure_destination, citizenship_continent),
-    statistic = all_categorical() ~ "{n} ({p}%)"
-  )
-
-table1
-
-
-table1 <- arrests |>
-  group_by(administration, citizenship_continent, departure_destination) |>
-  summarise(
-    n = n(),
-    prop = n / sum(n),
-    .groups = "drop_last"
-  )
-
-table1
+table1(~`Departure Destination` | administration,
+           data = table1_data_overall,
+           overall = FALSE,
+           caption = "Departure destinations of all arrestees by citizenship continent")
+table1(~`Departure Destination` | administration,
+       data = table1_data_africa,
+       overall = FALSE,
+       caption = "Departure destinations of African citizens")
+table1(~`Departure Destination` | administration,
+       data = table1_data_americas,
+       overall = FALSE,
+       caption = "Departure destinations of American citizens")
+table1(~`Departure Destination` | administration,
+       data = table1_data_asia,
+       overall = FALSE,
+       caption = "Departure destinations of Asian citizens")
+table1(~`Departure Destination` | administration,
+       data = table1_data_europe,
+       overall = FALSE,
+       caption = "Departure destinations of European citizens")
+table1(~`Departure Destination` | administration,
+       data = table1_data_oceania,
+       overall = FALSE,
+       caption = "Departure destinations of Oceanian citizens")
 ```
 
 ```{r}
