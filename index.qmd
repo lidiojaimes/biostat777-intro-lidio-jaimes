@@ -26,7 +26,7 @@ I enjoy watching sports (mainly Bayern and UGA) and exploring new places around 
   </video>
 
   <video width="200" height="350" controls>
-    <source src="files/uga.mp4" type="video/mp4">
+    <source src="files-docs/uga.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
