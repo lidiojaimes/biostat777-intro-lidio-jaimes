@@ -75,17 +75,11 @@ arrests <-
         )
 ```
 
-Your analysis must include some minimal form of data wrangling with you using at least five different functions from dplyr or tidyr. Have used: `mutate`, `filter`, `if_else`, `case_when`, and `select`.
-
 ::: {.callout-note}
 The data does not include the full month of July. Therefore, I have excluded data from July 2025 in my analysis.
 :::
 
 # Data Visualization
-
-Your analysis should include at least three plots with you using at least three different geom_*() functions from ggplot2 (or another package with geom_*() functions).
-Plots should have titles, subtitles, captions, and human-understandable axis labels.
-At least one plot should using a type of faceting (facet_grid() or facet_wrap()).
 
 ## Criminality of Arestees
 ```{r}
@@ -254,8 +248,9 @@ arrests |>
 
 Your analysis must include a .bib file, which you use to reference at least three unique citations. For example, it could be to a website or paper from where the original data came from or it could be to a paper describing a method you are using to analyze the data.
 
-Your analysis must include the use of at least 1 margin content.
 
 You must summarize your analysis and/or results with a paragraph (4-6 sentences).
 
-At the end of the data analysis, list out each of the functions you used from each of the packages (dplyr, tidyr, and ggplot2) to help the TA with respect to making sure you met all the requirements described above.
+# Functions Used
+- dplyr: `mutate()`, `filter()`, `if_else()`, `case_when()`, `select()`, `group_by()`, `summarise()`, `rename()`, `count()`
+- ggplot2: `ggplot()`, `aes()`, `geom_point()`, `geom_line()`, `theme_bw()`, `theme()`, `labs()`, `geom_vline()`, `scale_fill_brewer()`, `geom_bar()`, `facet_wrap()`
