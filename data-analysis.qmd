@@ -6,7 +6,7 @@ bibliography: references.bib
 # Introduction
 In this analysis, I will use data pertaining to ICE Arrests from Sep. 2023 to late Jul. 2025. The question I aim to answer is if recent arrests (January 2025 – present) target undocumented individuals with a criminal history, and how they compare to arrests from before January 2025. The target audience is the general public, with anyone interested in seeing how ICE is operating under the current presidential adminstration in comparison to the last one. 
 
-The data comes from the Deportation Data Project [@deportationdataproject2025], and its data dictionary can be found [@deportationdata_ice_codebook].
+The data comes from the Deportation Data Project [@deportationdataproject2025]. I used the ICE Arrests Processed dataset. The data dictionary can be found [@deportationdata_ice_codebook].
 
 ```{r, echo=FALSE}
 knitr::include_graphics("files-docs/protest-pic.jpg")
@@ -346,5 +346,3 @@ Back to my original question, it appears that ICE arrests since January 2025 hav
 # Functions Used
 - dplyr: `mutate()`, `filter()`, `if_else()`, `case_when()`, `select()`, `group_by()`, `summarise()`, `rename()`, `count()`
 - ggplot2: `ggplot()`, `aes()`, `geom_point()`, `geom_line()`, `theme_bw()`, `theme()`, `labs()`, `geom_vline()`, `scale_fill_brewer()`, `geom_bar()`, `facet_wrap()`, `geom_violin()`, `geom_boxplot()`
-
-# References
