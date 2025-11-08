@@ -3,11 +3,13 @@ title: "About"
 ---
 
 ## Education
-<span style="color:blue; font-weight:bold;">Johns Hopkins, Bloomberg School of Public Health</span> | *Baltimore, MD*  
-**Sc.M. in Biostatistics** | *Expected: May 2027*
+<span style="color:#003D9C; font-weight:bold;">Johns Hopkins University, Bloomberg School of Public Health</span> <span style="float: right;"><em>Baltimore, MD</em></span><br>
+<strong>Sc.M. in Biostatistics</strong> | <em>Expected: May 2027</em>
 
-<span style="color:red; font-weight:bold;">The University of Georgia</span> | *Athens, GA*  
-**B.S. in Statistics and Minor in Public Health** | *May 2025*
+
+<span style="color:#BA0C2F; font-weight:bold;">The University of Georgia</span> <span style="float: right;"><em>Athens, GA</em></span><br>
+<strong>B.S. in Statistics and Minor in Public Health</strong> | <em>May 2025</em>
+
 
 ## Research interests
 I am interested in survival analysis and longitudinal data analysis, with applications in aging research and clinical trials. I look forward to deepening my expertise in biostatistics and building a meaningful career in the field.
@@ -15,16 +17,16 @@ I am interested in survival analysis and longitudinal data analysis, with applic
 ## Research experience
 
 **Biostatistics Research Assistant**, University of Georgia — Athens, GA | Oct 2024 – May 2025  
-- Analyzed stroke patient data to identify key factors influencing severity and outcomes
-- Ensured data quality, conducted statistical analyses, and generated visualizations using R.
+- Analyzed stroke patient data to identify key factors influencing severity and outcomes  
+- Ensured data quality, conducted statistical analyses, and generated visualizations using R  
 
 **Biostatistics Research Assistant**, University of California, Irvine — Irvine, CA | Jun 2024 – Aug 2024  
-- Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts 
-- Conducted data wrangling, visualization, and longitudinal modeling using R and Git/Github for version control.
+- Analyzed neuropsychiatric symptoms in Down Syndrome and Alzheimer’s cohorts  
+- Conducted data wrangling, visualization, and longitudinal modeling using R with version control via Git/GitHub  
 
 **Biostatistics Research Assistant**, Columbia University — New York, NY | Jun 2023 – Jul 2023  
-- Studied medical cost trajectories for lung cancer patients using R.  
-- Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses.
+- Studied medical cost trajectories for lung cancer patients using R  
+- Conducted data cleaning, exploratory visualization, and applied survival and nonparametric analyses
 
 ## Publications
 
