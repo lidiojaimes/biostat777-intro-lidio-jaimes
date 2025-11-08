@@ -3,10 +3,12 @@ title: "About"
 ---
 
 ## Education
-\color{blue}{Johns Hopkins, Bloomberg School of Public Health}, *Baltimore, MD* 
+[Johns Hopkins, Bloomberg School of Public Health]{style="color:blue;"} , *Baltimore, MD*
+
 Sc.M. in Biostatistics, *Expected: May 2027*
 
-\color{red}{The University of Georgia}, *Athens, GA* 
+[The University of Georgia]{style="color:red;"} , *Athens, GA*
+
 B.S. in Statistics and Minor in Public Health, *May 2025*
 
 
